@@ -46,7 +46,7 @@ tasks.jacocoTestReport {
 pitest {
     targetClasses.set(setOf("DataStructures.*"))
     threads.set(4)
-    outputFormats.set(setOf("XML"))
+    outputFormats.set(setOf("XML", "HTML"))
     timestampedReports.set(false)
     junit5PluginVersion.set("1.2.0")
     mutators.set(setOf("STRONGER"))
