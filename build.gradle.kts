@@ -1,6 +1,7 @@
 plugins {
     id("java-library")
     id("info.solidsoft.pitest") version "1.15.0"
+    jacoco
 }
 
 repositories {
@@ -32,6 +33,13 @@ java {
 // Tell JUnit to use the Jupiter engine
 tasks.test {
     useJUnitPlatform()
+    finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
+}
+tasks.jacocoTestReport {
+    dependsOn(tasks.test) // tests are required to run before generating the report
+    reports {
+        xml.required.set(true)
+    }
 }
 
 // PIT Mutation Testing config
